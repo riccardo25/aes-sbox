@@ -47,15 +47,15 @@ architecture struct of sbox is
 	);
 	end component;
 	
-	component syncronizer is
-	generic( N : integer);
-	port (
-		CLK, rst_n : in std_logic;
-		D : in std_logic_vector(N-1 downto 0);
-		Q : out std_logic_vector(N-1 downto 0)
-	);
-
-	end component;
+--	component syncronizer is
+--	generic( N : integer);
+--	port (
+--		CLK, rst_n : in std_logic;
+--		D : in std_logic_vector(N-1 downto 0);
+--		Q : out std_logic_vector(N-1 downto 0)
+--	);
+--
+--	end component;
 
 	signal enc_sync, enc1		: std_logic;
 	signal in_sync, invtras, ininvers, outinvers, outtrasf, pipe, pre_sync		: std_logic_vector(7 downto 0);
@@ -77,7 +77,7 @@ begin
 
 	AFFTRANS1: aff_trans port map( a=> outinvers, q=> outtrasf);
 	
-	pre_sync <= outtrasf when enc1 = '1' else outinvers;
+	data_out <= outtrasf when enc1 = '1' else outinvers;
 	
 --	process(enc)
 --	begin
@@ -90,7 +90,7 @@ begin
 --	end process;
 	
 	
-SYNC2: syncronizer generic map(8) port map(CLK => CLK, rst_n => rst_n, D=>pre_sync, Q=>data_out );
+--SYNC2: syncronizer generic map(8) port map(CLK => CLK, rst_n => rst_n, D=>pre_sync, Q=>data_out );
 	
 	
 end struct;

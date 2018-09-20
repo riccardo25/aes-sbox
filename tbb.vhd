@@ -92,7 +92,7 @@ BEGIN
       wait for CLK_period;
 		rst_n <='1';
       -- insert stimulus here 
-		data_in <= "00011111";
+		data_in <= X"BE";
 		enc <= '1';
 		
 
